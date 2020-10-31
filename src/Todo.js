@@ -1,14 +1,13 @@
-import React from 'react';
+import React from 'react'
 import "./Todo.css"
 
 const Todo = (props) => {
     return (
-        <div className="Todo">
-            <h2>{props.title}</h2>
-            <p>{props.item1}</p>
-            <p>{props.item2}</p>
+        <div className="todo">
+            <h1>{props.title}</h1>
+            <p>{props.description}</p>
         </div>
     )
 }
 
-export default Todo;
+export default Todo
