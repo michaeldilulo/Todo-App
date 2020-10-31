@@ -4,28 +4,32 @@ import { useState } from 'react';
 
 function App() {
 
-  // short term memory
-  // call the list: todos, need a way of updating list: setTodos
-  const [todos, setTodos] = useState([
-    {
-      title: "Take out the trash",
-      description: "The bin man comes at 9PM"
-    },
-    {
-      title: "Walk the dog",
-      description: "She is bored"
-    },
-    {
-      title: "Go Food shopping",
-      description: "No food in the fridge"
-    }
-  ])
+  const [todos, setTodos] = useState([])
+  // sets up the initial input as empty
+  const [input, setInput] = useState('')
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // spread the todos array and add our input to it
+    setTodos([...todos, input])
+    setInput('')
+  }
 
   return (
     <div className="app">
+
+      <form>
+        <input value={input} onChange={e => setInput(e.target.value)} type="text" />
+        <button disabled={!input} onClick={handleSubmit} type="submit">Add Todo</button>
+      </form>
+
       {
+
+        // when we removed the object, we need to remove todo.title 
         todos.map((todo) => (
-          <Todo title={todo.title} description={todo.description} />
+          // key needs to be added, to keep from having an error
+          <Todo title={todo} key={todo} />
         ))
       }
     </div>
