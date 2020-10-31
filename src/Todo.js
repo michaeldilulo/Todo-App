@@ -1,11 +1,12 @@
 import React from 'react'
 import "./Todo.css"
 
-const Todo = (props) => {
+// Destructuring: If you do this, you cannot clg the props
+const Todo = ({ title, description }) => {
     return (
         <div className="todo">
-            <h1>{props.title}</h1>
-            <p>{props.description}</p>
+            <h1>{title}</h1>
+            <p>{description}</p>
         </div>
     )
 }
