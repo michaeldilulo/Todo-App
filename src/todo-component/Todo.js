@@ -1,10 +1,11 @@
 import React from 'react'
-import "./Todo.css"
+import "../todo-component/Todo.css"
 
 const Todo = (props) => {
+
     return (
         <div className="todo">
-            <h1>{props.title}</h1>
+            <p>{props.title}</p>
         </div>
     )
 }

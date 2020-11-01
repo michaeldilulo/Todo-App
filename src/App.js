@@ -1,17 +1,14 @@
-import Todo from './Todo';
+import React, { useState } from 'react';
 import './App.css';
-import { useState } from 'react';
+import Todo from './todo-component/Todo';
 
-function App() {
+const App = () => {
 
   const [todos, setTodos] = useState([])
-  // sets up the initial input as empty
   const [input, setInput] = useState('')
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // spread the todos array and add our input to it
+  const handleSubmission = (event) => {
+    event.preventDefault()
     setTodos([...todos, input])
     setInput('')
   }
@@ -19,19 +16,24 @@ function App() {
   return (
     <div className="app">
 
+      <h2>Todo Application</h2>
+
       <form>
-        <input value={input} onChange={e => setInput(e.target.value)} type="text" />
-        <button disabled={!input} onClick={handleSubmit} type="submit">Add Todo</button>
+        <input type="text" placeholder="Input Todo Here" value={input} onChange={e => setInput(e.target.value)} />
+        <button type="submit" onClick={handleSubmission}>Add Todo</button>
       </form>
 
-      {
+      <h3>Todos for the day</h3>
 
-        // when we removed the object, we need to remove todo.title 
-        todos.map((todo) => (
-          // key needs to be added, to keep from having an error
-          <Todo title={todo} key={todo} />
-        ))
+      {
+        // Not the preferred way to do it with index, but is a way to do it.
+        todos.map((todo, id) => {
+          return (
+            <Todo title={todo} key={id} />
+          )
+        })
       }
+
     </div>
   );
 }
