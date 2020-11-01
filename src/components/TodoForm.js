@@ -12,7 +12,7 @@ const TodoForm = (props) => {
         event.preventDefault();
 
         // Able to access the props of the todo
-        props.onSubmit = ({
+        props.onSubmit({
             id: Math.floor(Math.random() * 10000 + 1),
             text: input
         })
@@ -27,6 +27,7 @@ const TodoForm = (props) => {
             <form className="todo-form" onSubmit={submitTodoForm}>
                 <input type="text" placeholder="Add Todo" value={input}
                     name="text" className="todo-input"
+                    // onChange deals with inputs 
                     onChange={handleChange}
                 />
                 <button className="todo-button" type="submit">Add Todo</button>
