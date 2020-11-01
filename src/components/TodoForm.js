@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// Properties of the Todo for my Todo Object
+// need to pass in the properties of the todo list items to be able to run the props.onSubmit
 const TodoForm = (props) => {
+    // if edit is true, return the props.edit.value, or ""
     const [input, setInput] = useState(props.edit ? props.edit.value : "")
 
+    // allows useEffect which runs on page reload to focus in on the text box
     const focusRef = useRef(null)
 
     useEffect(() => {
@@ -17,14 +19,11 @@ const TodoForm = (props) => {
     const submitTodoForm = (event) => {
         event.preventDefault();
 
-        // Able to access the props of the todo
+        // props of my todo list items
         props.onSubmit({
             id: Math.floor(Math.random() * 10000 + 1),
             text: input
         })
-        /* setInput to empty string: This clears out the input field when you
-        submit the form
-        */
         setInput('')
     }
 
@@ -35,7 +34,6 @@ const TodoForm = (props) => {
                     <>
                         <input type="text" placeholder="Add Edit" value={input}
                             name="text" className="todo-input edit"
-                            // onChange deals with inputs 
                             onChange={handleChange}
                             ref={focusRef}
                         />
@@ -45,7 +43,6 @@ const TodoForm = (props) => {
                         <>
                             <input type="text" placeholder="Add Todo" value={input}
                                 name="text" className="todo-input"
-                                // onChange deals with inputs 
                                 onChange={handleChange}
                                 ref={focusRef}
                             />
