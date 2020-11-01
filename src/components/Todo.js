@@ -34,7 +34,7 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
                 />
                 <TiEdit
                     onClick={() => setEditTodo({ id: todo.id, value: todo.text })}
-                    className="edit-todo"
+                    className="edit"
                 />
             </div>
         </div>
